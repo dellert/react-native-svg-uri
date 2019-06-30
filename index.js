@@ -242,6 +242,9 @@ class SvgUri extends Component{
       .filter(utils.getEnabledAttributes(enabledAttributes.concat(COMMON_ATTS)))
       .reduce((acc, {nodeName, nodeValue}) => {
         acc[nodeName] = (this.state.fill && nodeName === 'fill' && nodeValue !== 'none') ? this.state.fill : nodeValue
+          
+          if (this.props.fillAll) {acc['fill'] = this.state.fill}
+          
         return acc
       }, {});
     Object.assign(componentAtts, styleAtts);
